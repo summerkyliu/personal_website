@@ -17,6 +17,45 @@ html {
   line-height: 1.4;
 }
 
+/* Style for all header tags */
+h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* Specific styles for each header tag */
+h1 {
+    font-size: 3em;
+    color: #00008B;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.75em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
