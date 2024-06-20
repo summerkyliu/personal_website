@@ -42,6 +42,16 @@ h3 {
     font-weight: bold;
 }
 
+.fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000; /* Ensure the header is above other content */
+}
 
 
 /*
