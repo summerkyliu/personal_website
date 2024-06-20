@@ -13,13 +13,14 @@
 
 html {
   color: #222;
-  font-size: 1em;
+  font-size: 1.5em;
   line-height: 1.4;
+  font-family: Optima, sans-serif;
 }
 
 /* Style for all header tags */
 h1, h2, h3, h4, h5, h6 {
-    font-family: Arial, sans-serif;
+    font-family: American Typewriter, serif;
     color: #333;
     margin: 20px 0;
 }
@@ -41,20 +42,7 @@ h3 {
     font-weight: bold;
 }
 
-h4 {
-    font-size: 1.5em;
-    font-weight: bold;
-}
 
-h5 {
-    font-size: 1.25em;
-    font-weight: bold;
-}
-
-h6 {
-    font-size: 1em;
-    font-weight: bold;
-}
 
 /*
  * Remove text-shadow in selection highlight:
