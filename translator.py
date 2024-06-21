@@ -17,7 +17,7 @@ def ggl_translate(text, dest_lang):
   translation = translator.translate(text, dest=dest_lang)
   return translation.text
 
-def gpt_improve(text, api_key, model, messages, temperature=0.5, max_tokens=100)
+def gpt_improve(text, api_key, model, messages, temperature=0.5, max_tokens=2048)
     endpoint = ENDPOINT
     api_key = API_KEY
     text = ggl_translate(text)
@@ -40,6 +40,10 @@ def gpt_improve(text, api_key, model, messages, temperature=0.5, max_tokens=100)
     
     if response.status_code == 200:
         response_data = response.json()
-        return response_data['choices'][0]['message']['content']
+        return jsonify({"Translated text: "response_data['choices'][0]['message']['content'])
     else:
-        return f"Error: {response.status_code}, {response.text}"
+        return jsonify("Error: "response.status_code"," response.text)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
