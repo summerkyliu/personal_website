@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify
 
 load_dotenv()
 
-API_KEY = os.getenv('OPENAI_API_KEY')
+API_KEY = os.getenv('API_KEY')
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 app = Flask(__name__)
