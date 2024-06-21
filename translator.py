@@ -2,8 +2,13 @@ from googletrans import Translator
 import openai
 import requests
 import json
+from dotenv import load_dotenv
+import os
 
-API_KEY = 
+
+load_dotenv()
+
+API_KEY = os.getenv('OPENAI_API_KEY')
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 
