@@ -40,9 +40,9 @@ def gpt_improve(text, api_key, model, messages, temperature=0.5, max_tokens=2048
     
     if response.status_code == 200:
         response_data = response.json()
-        return jsonify({"Translated text: "response_data['choices'][0]['message']['content'])
+        return jsonify({response_data['choices'][0]['message']['content'].text)
     else:
-        return jsonify("Error: "response.status_code"," response.text)
+        return jsonify("Error: "response.status_code", " response.text)
 
 
 if __name__ == '__main__':
