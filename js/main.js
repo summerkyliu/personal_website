@@ -1,5 +1,5 @@
 document.getElementById('translateForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
+    event.preventDefault();
 
     const text = document.getElementById('text').value;
     const dest_lang = document.getElementById('dest_lang').value;
