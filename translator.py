@@ -22,7 +22,8 @@ def translate_text():
     
     translator = Translator()
     translation = translator.translate(text, dest=dest_lang)
-    return jsonify({'translated_text': translation.text})
+    result = gpt_improve(translation.text)
+    return jsonify({'translated_text': result.text})
 
 def gpt_improve(text, api_key=API_KEY, model="gpt-3.5-turbo", temperature=0.5, max_tokens=2048):
     endpoint = ENDPOINT
