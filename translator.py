@@ -11,8 +11,10 @@ load_dotenv()
 API_KEY = os.getenv('OPENAI_API_KEY')
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
-
+@app.route('/translate', methods=['POST'])
 def ggl_translate(text, dest_lang):
+  data = request.get_json()
+  dest_lang = data.get("dest_lang")
   translator = Translator()
   translation = translator.translate(text, dest=dest_lang)
   return translation.text
