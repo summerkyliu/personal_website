@@ -5,17 +5,19 @@
 </head>
 <body>
   <div >
-      <form id="translateForm" method="post">
+      <form id="translateForm" method="post" style="border: 2px solid black; padding: 10px; margin: 20px; background-color: #f0f0f0;
+      width: 80%; height:30%">
         <label for="text">Text to Translate:</label>
         <input type="text" id="text" name="text"><br><br>
         <label for="dest_lang">Destination Language (e.g., es for Spanish):</label>
         <input type="text" id="dest_lang" name="dest_lang"><br><br>
         <input type="submit" value="Translate">
-    </form>    
+    </form>   
 
+    <div class="fixed_heading">
+    <h3>Translated Text:</h3></div>
     <div id="translation" style="border: 2px solid black; padding: 10px; margin: 20px; background-color: #f0f0f0;
       width: 80%; height:30%">
-     <h1>Translated Text:</h1>
     <script src="main.js"></script>
     </div> 
 </div>
