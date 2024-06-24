@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 import os
 from flask import Flask, request, jsonify
+from openai import OPENAI
 
 load_dotenv()
 
