@@ -16,6 +16,5 @@ document.getElementById('translateForm').addEventListener('submit', async functi
     });
 
     const data = await response.json();
-    document.getElementById('translation').textContent = data.translated_text;  // Display the translation
-});
+    document.getElementById('translation').textContent = data.result
 
