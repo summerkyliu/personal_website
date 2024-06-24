@@ -1,4 +1,4 @@
-from google.cloud import translate_v2 as translate
+from googletrans import Translator
 import requests
 import json
 from dotenv import load_dotenv
@@ -8,7 +8,7 @@ from openai import OPENAI
 
 load_dotenv()
 
-translate_client = translate.Client()
+translator = Translator()
 
 API_KEY = os.getenv('API_KEY')
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
@@ -24,8 +24,8 @@ def translate_and_improve():
     if not text or not dest_lang:
         return jsonify({'error': 'Invalid input'}), 400
     
-    translation = translate_client.translate(text, target_language=dest_lang)
-    translated_text = translation['translatedText']
+    translation = translator.translate(text, target_language=dest_lang)
+    translated_text = translation.text
     
     improved_text = gpt_improve(translated_text)
     
