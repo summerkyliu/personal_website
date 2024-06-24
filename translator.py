@@ -1,4 +1,4 @@
-from googletrans import Translator
+from google.cloud import translate_v2 as translate
 import requests
 import json
 from dotenv import load_dotenv
@@ -7,23 +7,29 @@ from flask import Flask, request, jsonify
 
 load_dotenv()
 
+translate_client = translate.Client()
+
 API_KEY = os.getenv('API_KEY')
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 app = Flask(__name__)
 
 @app.route('/translate', methods=['POST'])
-def translate_text():
+def translate_and_improve():
     data = request.get_json()
     text = data.get("text")
     dest_lang = data.get("dest_lang")
+    
     if not text or not dest_lang:
         return jsonify({'error': 'Invalid input'}), 400
     
-    translator = Translator()
-    translation = translator.translate(text, dest=dest_lang)
-    result = gpt_improve(translation.text)
-    return jsonify({'translated_text': result.text})
+    translation = translate_client.translate(text, target_language=dest_lang)
+    translated_text = translation['translatedText']
+    
+    improved_text = gpt_improve(translated_text)
+    
+    return jsonify({'translated_text': improved_text})
+
 
 def gpt_improve(text, api_key=API_KEY, model="gpt-3.5-turbo", temperature=0.5, max_tokens=2048):
     endpoint = ENDPOINT
@@ -51,6 +57,8 @@ def gpt_improve(text, api_key=API_KEY, model="gpt-3.5-turbo", temperature=0.5, m
         return response_data['choices'][0]['message']['content']
     else:
         return f"Error: {response.status_code}, {response.text}"
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
