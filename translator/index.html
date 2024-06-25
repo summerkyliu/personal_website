@@ -3,13 +3,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <Title>Yet to be Smart Translator</Title>
+  <style>
+        #text {
+            width: 60%;
+            height: 3em; 
+            padding: 10px;
+            box-sizing: border-box;
+            resize: vertical; 
+            overflow: auto; 
+        }
+  </style>
 </head>
 <body>
   <div>
       <form id="translateForm" method="post" style="border: 2px solid black; padding: 10px; margin: 20px; background-color: #ADD8E6;
       width: 80%; height:30%">
         <label for="text">Text to Translate:</label>
-        <input type="text" id="text" name="text" style="width: 60%; height: 4em"><br><br>
+        <textarea id="text" name="text" style="width: 60%; height: 150px;"></textarea><br><br>
         <label for="dest_lang">Destination Language (e.g., es for Spanish):</label>
         <input type="text" id="dest_lang" name="dest_lang"><br><br>
         <input type="submit" value="Translate">
@@ -23,6 +33,5 @@
       width: 80%; height:30%"></div> 
     <script src="/personal_website/js/main.js"></script>
     
-
 </body>
 </html>
