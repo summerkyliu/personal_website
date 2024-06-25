@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const dest_lang = document.getElementById('dest_lang').value;
             console.log("Text:", text);
             console.log("Destination Language:", dest_lang);
- 
+        
             try {
                 const response = await fetch('http://127.0.0.1:5000/translate', {
                     method: 'POST',
