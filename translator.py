@@ -1,4 +1,4 @@
-from googletrans import Translator
+from google_trans_new import google_translator  
 import requests
 import json
 from dotenv import load_dotenv
@@ -10,8 +10,7 @@ import logging
 load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
 
-
-translator = Translator(service_urls=['translate.google.cn'])
+translator = google_translator(timeout=10)  
 
 API_KEY = os.getenv('API_KEY')
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
@@ -35,7 +34,7 @@ def translate_and_improve():
         if not text or not dest_lang:
             return jsonify({'error': 'Invalid input'}), 400
 
-        translation = translator.translate(text, dest=dest_lang)
+        translation = translator.translate(text, lang_tgt=dest_lang)
     
         translated_text = translation.text
         logging.debug(f"Google translation result: {translation.text}")
