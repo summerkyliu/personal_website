@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -14,6 +15,7 @@ ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
