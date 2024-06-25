@@ -5,8 +5,12 @@ from dotenv import load_dotenv
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import logging 
+import httpx
 
 load_dotenv()
+logging.basicConfig(level=logging.DEBUG)
+
 
 translator = Translator()
 
@@ -23,19 +27,25 @@ def index():
 
 @app.route('/translate', methods=['POST'])
 def translate_and_improve():
-    data = request.get_json()
-    text = data.get("text")
-    dest_lang = data.get("dest_lang")
+    try: 
+        data = request.get_json()
+        logging.debug(f"Received data: {data}")
+        text = data.get("text")
+        dest_lang = data.get("dest_lang")
     
-    if not text or not dest_lang:
-        return jsonify({'error': 'Invalid input'}), 400
+        if not text or not dest_lang:
+            return jsonify({'error': 'Invalid input'}), 400
 
-    translation = translator.translate(text, dest=dest_lang)
-    translated_text = translation.text
+        translation = translator.translate(text, dest=dest_lang, timeout=httpx.Timeout(10.0, read=20.0))
     
-    improved_text = gpt_improve(translated_text)
+        translated_text = translation.text
+        logging.debug(f"Google translation result: {translation.text}")
+        improved_text = gpt_improve(translated_text)
 
-    return jsonify({'translated_text': improved_text})
+        return jsonify({'translated_text': improved_text})
+    except Exception as e: 
+        logging.error(f"Error during translation: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 def gpt_improve(text, api_key=API_KEY, model="gpt-3.5-turbo", temperature=0.5, max_tokens=2048):
     endpoint = ENDPOINT
