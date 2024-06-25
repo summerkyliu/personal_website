@@ -11,7 +11,7 @@ load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
 
 
-translator = Translator()
+translator = Translator(service_urls=['translate.google.cn'])
 
 API_KEY = os.getenv('API_KEY')
 ENDPOINT = "https://api.openai.com/v1/chat/completions"
