@@ -6,7 +6,6 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import logging 
-import httpx
 
 load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
@@ -36,7 +35,7 @@ def translate_and_improve():
         if not text or not dest_lang:
             return jsonify({'error': 'Invalid input'}), 400
 
-        translation = translator.translate(text, dest=dest_lang, timeout=httpx.Timeout(10.0, read=20.0))
+        translation = translator.translate(text, dest=dest_lang)
     
         translated_text = translation.text
         logging.debug(f"Google translation result: {translation.text}")
