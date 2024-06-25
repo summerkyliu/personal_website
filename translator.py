@@ -17,7 +17,7 @@ ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 app = Flask(__name__)
 CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
 
 def openai_request_with_retry(payload, headers, retries=3, timeout=60, backoff_factor=1):
     for attempt in range(retries):
@@ -71,7 +71,7 @@ def gpt_improve(text, dest_lang, api_key=API_KEY, model="gpt-3.5-turbo", tempera
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
         # {"role": "user", "content": f"Make the following text sound more natural in its original language: {text}"}
-        {"role": "user", "content": f"Translate the follow text to {dest_lang}: {text}"}
+        {"role": "user", "content": f"Translate the following text to {dest_lang}: {text}"}
     ]
 
     data = {
