@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log("DOM fully loaded and parsed");
  
-    const translateForm = document.getElementById('translateForm');
+    const translateForm = document.getElementById("translateForm");
     if (translateForm) {
         translateForm.addEventListener('submit', async function(event) {
             event.preventDefault();
