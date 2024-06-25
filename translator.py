@@ -4,7 +4,7 @@ import json
 from dotenv import load_dotenv
 import os
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import logging 
 
 load_dotenv()
@@ -18,12 +18,14 @@ ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def index():
     return 'Welcome to the Translator API!'
 
 @app.route('/translate', methods=['POST'])
+@cross_origin()
 def translate_and_improve():
     try: 
         data = request.get_json()
